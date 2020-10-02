@@ -1,23 +1,8 @@
-import React from 'react';
-import { SafeAreaView, View, Text, Button, Alert } from 'react-native';
+import WelcomeSCreen from './src/screens/welcome'
+import WelcomeScreen from './src/screens/welcome';
 
-const buttonHandler = (source) => {
-    return source === 'register' ? Alert.alert('register') : Alert.alert('login');
-}
-
-const App = () => {
-    return (
-        <SafeAreaView>
-            <View>
-                <Text>Dry Cleaner's: Axxxll</Text>
-            <Button
-            title="Register"
-            color="lime"
-            onPress={buttonHandler.bind(this, 'register')}    
-            />
-            </View>
-        </SafeAreaView>
-    );
-    }
+const App = () => (
+    <WelcomeScreen></WelcomeScreen>
+)
     
-    export default App;
+export default App;

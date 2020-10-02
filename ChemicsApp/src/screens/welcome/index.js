@@ -5,7 +5,7 @@ const buttonHandler = (source) => {
     return source === 'register' ? Alert.alert('register') : Alert.alert('login');
 }
 
-const MainScreen = () => {
+const WelcomeScreen = () => {
     return (
         <SafeAreaView>
             <View>
@@ -18,6 +18,6 @@ const MainScreen = () => {
             </View>
         </SafeAreaView>
     );
-    }
+}
     
-    export default MainScreen;
+export default WelcomeScreen;
