@@ -21,6 +21,7 @@ target 'ChemicsApp' do
   post_install do |installer|
     flipper_post_install(installer)
   end
+
 end
 
 target 'ChemicsApp-tvOS' do

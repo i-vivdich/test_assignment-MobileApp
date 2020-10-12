@@ -1,20 +1,12 @@
 import React from 'react';
 import { SafeAreaView, View, Text, Button, Alert } from 'react-native';
 
-const buttonHandler = (source) => {
-    return source === 'register' ? Alert.alert('register') : Alert.alert('login');
-}
-
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
     return (
-        <SafeAreaView>
-            <View>
-                <Text>Dry Cleaner's: All</Text>
-            <Button
-            title="Register"
-            color="lime"
-            onPress={buttonHandler.bind(this, 'register')}    
-            />
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Welcome to the Dry Clenaer's App</Text>
+                <Button title="Log In" color="lime" onPress={() => navigation.navigate('Login')} />
             </View>
         </SafeAreaView>
     );

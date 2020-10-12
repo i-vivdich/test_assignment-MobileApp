@@ -1,9 +1,36 @@
 import React from 'react';
+import { View, Text, SafeAreaView, Button } from 'react-native';
+import { setToken } from '../../api/token';
 
-const HomeScreen = () => (
-    <View>
-        <Text>HOME SCREEN</Text>
-    </View>
-);
 
-export default HomeScreen;
+export default class HomeScreen extends React.Component {
+    state = { };
+
+    logOut = async () => {
+      await setToken('')
+      this.props.navigation.navigate('Login');
+    }
+
+    // handleUserLoadingError = res => {
+    //   if (res.error === 401) {
+    //     this.props.navigation.navigate('Login');
+    //   } else {
+    //     this.setState({
+    //       hasLoadedUsers: false,
+    //       userLoadingErrorMessage: res.message
+    //     })
+    //   }
+    // }
+
+    // componentDidMount() {
+    // }
+
+    render() {
+      return (
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>HOME SCREEN</Text>
+            <Button title="home test to log in" onPress={this.props.navigation.navigate.bind(this, 'Login')}/>
+        </SafeAreaView>
+      )  
+  }
+}

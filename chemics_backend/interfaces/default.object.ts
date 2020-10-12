@@ -1,0 +1,1 @@
+export type defaultObject = { [key: string]: string };
