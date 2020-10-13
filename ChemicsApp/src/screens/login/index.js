@@ -13,8 +13,8 @@ const LoginScreen = ({ navigation }) => {
             >
             </AuthForm>
             <Button
-                title="Create Account"
-                onPress={() => navigation.navigate('CreateAccount')}
+                title="Restore Password"
+                onPress={() => navigation.navigate('ResetPass')}
             />
         </SafeAreaView>
     );

@@ -1,4 +1,4 @@
-import API_URL from '../../config/secret';
+import API_URL from '../config/secret';
 import { getToken } from './token';
 
 const getHeaders = async () => {
@@ -24,12 +24,10 @@ export const post = async (destination, body) => {
     body: JSON.stringify(body),
   });
 
-  console.log(result);
-
   if (result.ok) {
-    return await result.json();
+    return result
   }
-  throw { error: result.status };
+  throw new Error(result.status);
 };
 
 export const get = async (destination) => {

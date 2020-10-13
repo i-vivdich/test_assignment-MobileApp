@@ -2,14 +2,19 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+// routes include
+import passRoute from './routes/pass.routes';
+import authRoute from './routes/auth.routes';
+
+// DB include
 import db from './models';
 import { dbConfig } from './config/db.config';
 
 // Express setup
 const app = express();
 
-const corsOptions: { [key: string]: string }= {
-    origin: "http://localhost:8091"
+const corsOptions: { [key: string]: string } = {
+    origin: "http://localhost:8081"
 };
 
 app.use(cors(corsOptions));
@@ -34,13 +39,15 @@ db.mongoose.connect(`mongodb+srv://${dbConfig.USER}:${dbConfig.PASS}@${dbConfig.
         process.exit();
     });
 
+
+
 app.get('/', (req, res) => {
     res.json({ message: 'Main route is functioning. The rest is perhaps too :)'});
 });
 
 // routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+app.use('/api/auth', authRoute);
+app.use('/password', passRoute);
 
 const PORT = process.env.PORT || 8090;
 app.listen(PORT, () => {

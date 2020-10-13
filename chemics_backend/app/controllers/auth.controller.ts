@@ -8,6 +8,7 @@ const User = db.user;
 const Role = db.role;
 
 export const signup = (req: any, res: any) => {
+    console.log(req.body)
     const user = new User({
         username: req.body.username,
         email: req.body.email,
@@ -66,8 +67,6 @@ export const signup = (req: any, res: any) => {
 };
 
 export const signin = (req: any, res: any) => {
-    console.log('REQUEST ON SIGNIN:');
-    console.log(req.body)
     User.findOne({
         email: req.body.user.email
     })
@@ -94,7 +93,7 @@ export const signin = (req: any, res: any) => {
                 });
             }
 
-            const token = jwt.sign( { id: user.id }, secretKey, {
+            const token = jwt.sign({ id: user.id }, secretKey, {
                 expiresIn: 86400
             });
 

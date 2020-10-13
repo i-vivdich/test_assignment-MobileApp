@@ -16,7 +16,7 @@ export const checkDuplicateUsernameOrEmail = (req: any, res: any, next: any) => 
             res.status(400).send({ message: 'Failed! Username is already in use.' });
             return;
         }
-        // CHECK LATER WHY THIS IS NESTED
+
         User.findOne({
             email: req.body.email
         }).exec((err: any, email: any) => {
@@ -35,7 +35,6 @@ export const checkDuplicateUsernameOrEmail = (req: any, res: any, next: any) => 
 };
 
 export const checkRoleExisted = (req: any, res: any, next: any) => {
-    // check here what if roles dont exist
     if (req.body.roles) {
         for (const role of req.body.roles) {
             if (!roles.includes(role)) {

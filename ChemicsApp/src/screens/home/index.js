@@ -29,7 +29,6 @@ export default class HomeScreen extends React.Component {
       return (
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>HOME SCREEN</Text>
-            <Button title="home test to log in" onPress={this.props.navigation.navigate.bind(this, 'Login')}/>
         </SafeAreaView>
       )  
   }

@@ -1,6 +1,6 @@
-import { defaultObject } from '../../interfaces/default.object';
+import { defaultObject } from '../interfaces/default.object';
 
-export const  dbConfig: defaultObject =  {
+export const dbConfig: defaultObject =  {
     USER: 'vivUser',
     PASS: 'Ufhbr999',
     DB: "chemics_app",

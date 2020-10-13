@@ -6,7 +6,8 @@ const WelcomeScreen = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text>Welcome to the Dry Clenaer's App</Text>
-                <Button title="Log In" color="lime" onPress={() => navigation.navigate('Login')} />
+                <Button title="Create Account" color="lime" onPress={() => navigation.navigate('CreateAccount')} />
+                <Button title="Log In" color="orange" onPress={() => navigation.navigate('Login')} />
             </View>
         </SafeAreaView>
     );
