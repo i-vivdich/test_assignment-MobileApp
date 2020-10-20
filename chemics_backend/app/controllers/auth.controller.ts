@@ -8,7 +8,6 @@ const User = db.user;
 const Role = db.role;
 
 export const signup = (req: any, res: any) => {
-    console.log(req.body)
     const user = new User({
         username: req.body.username,
         email: req.body.email,
@@ -68,7 +67,7 @@ export const signup = (req: any, res: any) => {
 
 export const signin = (req: any, res: any) => {
     User.findOne({
-        email: req.body.user.email
+        email: req.body.email
     })
         .populate("roles", "-__v")
         .exec((err: any, user: any) => {
@@ -82,7 +81,7 @@ export const signin = (req: any, res: any) => {
             }
 
             const passwordIsValid = bcrypt.compareSync(
-                req.body.user.password,
+                req.body.password,
                 user.password
             );
 

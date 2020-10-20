@@ -23,6 +23,6 @@ route.post(
     signup
 );
 
-route.post('signin', signin);
+route.post('/signin', signin);
 
 export default route;

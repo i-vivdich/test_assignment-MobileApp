@@ -6,6 +6,10 @@ export const User = mongoose.model(
         username: String,
         email: String,
         password: String,
+        balance: {
+            type: Number,
+            default: (Math.random() * 500)
+        },
         roles: [
             {
                 type: mongoose.Schema.Types.ObjectId,

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { secretKey } from '../config/auth.config.js';
+import { secretKey } from '../config/auth.config';
 
 import db from '../models';
 
