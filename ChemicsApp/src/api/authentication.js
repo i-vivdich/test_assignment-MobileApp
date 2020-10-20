@@ -1,9 +1,9 @@
 import { post } from './fetch';
 
-export const login = (email, password) => {
-  return post('/api/auth/signin', { email, password });
+export const login = (data) => {
+  return post('/auth/signin', { email: data.email, password: data.password });
 };
 
-export const createAccount = (username, email, password) => {
-  return post('/api/auth/signup', { username, email, password });
+export const createAccount = ({ username, email, password }) => {
+  return post('/auth/signup', { username, email, password });
 };

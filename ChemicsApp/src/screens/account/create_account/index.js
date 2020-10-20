@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, Button, ScrollView, StyleSheet, TextInput } from 'react-native';
+import { AuthContext } from '../../../contexts/auth_context';
 
 import { createAccount } from '../../../api/authentication';
-import { post } from '../../../api/fetch';
 
 const CreateAccountScreen = ({ navigation, onCreation }) => {
     const [email, onChangeEmail] = useState('');
@@ -10,21 +10,21 @@ const CreateAccountScreen = ({ navigation, onCreation }) => {
     const [password, onChangePassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const submit = async () => {
-        try {
-            const res = await post('/api/auth/signup', { username, email, password });
-            console.log(await res.json())
+    const { signUp } = React.useContext(AuthContext);
 
-            // const res = createAccount(username, email, password);
-            // console.log(await res.json())
-            // navigation.navigate('Home');
-        } catch (err) {
-            if (err) {
-                setErrorMessage(err.message);
-            }
-            setErrorMessage("Something went wrong!");
-        }
-    }
+
+    // const submit = async () => {
+    //     try {
+    //         const res = await createAccount({ username, email, password });
+    //         // delay for displaying that user has been successfully registered
+    //         navigation.navigate('Login');
+    //     } catch (err) {
+    //         if (err) {
+    //             setErrorMessage(err.message);
+    //         }
+    //         setErrorMessage("Something went wrong!");
+    //     }
+    // }
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -45,7 +45,7 @@ const CreateAccountScreen = ({ navigation, onCreation }) => {
                 value={password}
                 secureTextEntry
             />
-            <Button title="Create Account" onPress={submit}/>
+            <Button title="Create Account" onPress={() => signUp({username, email, password})}/>
             { errorMessage ? <Text>{ errorMessage }</Text> : null }
         </ScrollView>
     );

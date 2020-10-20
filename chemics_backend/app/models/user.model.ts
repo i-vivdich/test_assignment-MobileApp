@@ -8,7 +8,7 @@ export const User = mongoose.model(
         password: String,
         balance: {
             type: Number,
-            default: (Math.random() * 500)
+            default: Math.round(Math.random() * 500)
         },
         roles: [
             {

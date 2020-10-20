@@ -8,7 +8,7 @@ const AuthForm = ({ buttonText, onSubmit, children, onAuthentication }) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const submit = () => {
-        onSubmit(email, password)
+        onSubmit({email, password})
             .then(async res => {
                 await setToken(res.auth_token);
                 onAuthentication();

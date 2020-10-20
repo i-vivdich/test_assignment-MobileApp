@@ -25,9 +25,10 @@ export const post = async (destination, body) => {
   });
 
   if (result.ok) {
-    return result
+    return await result.json();
   }
-  throw new Error(result.status);
+  
+  throw { error: result.status };
 };
 
 export const get = async (destination) => {

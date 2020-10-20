@@ -1,15 +1,20 @@
 import React from 'react';
 import { View, Text, SafeAreaView, Button } from 'react-native';
 import { setToken } from '../../api/token';
+import { AuthContext } from '../../contexts/auth_context';
 
+const HomeScreen = ({ props }) => {
 
-export default class HomeScreen extends React.Component {
+    const { signOut } = React.useContext(AuthContext)
     state = { };
 
-    logOut = async () => {
-      await setToken('')
-      this.props.navigation.navigate('Login');
-    }
+    // logOut = async () => {
+    //   await setToken('')
+    //   this.props.navigation.navigate('Login');
+    // }
+
+    // const { signOut } = React.useContext(AuthContext);
+
 
     // handleUserLoadingError = res => {
     //   if (res.error === 401) {
@@ -25,11 +30,12 @@ export default class HomeScreen extends React.Component {
     // componentDidMount() {
     // }
 
-    render() {
-      return (
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>HOME SCREEN</Text>
-        </SafeAreaView>
-      )  
-  }
+    return (
+      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text>HOME SCREEN</Text>
+          <Button title="Sign Out" onPress={() => signOut()}/>
+      </SafeAreaView>
+    )
 }
+
+export default HomeScreen;

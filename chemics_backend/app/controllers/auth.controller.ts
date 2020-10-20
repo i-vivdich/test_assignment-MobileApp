@@ -66,6 +66,7 @@ export const signup = (req: any, res: any) => {
 };
 
 export const signin = (req: any, res: any) => {
+    console.log(req.body)
     User.findOne({
         email: req.body.email
     })
@@ -78,6 +79,7 @@ export const signin = (req: any, res: any) => {
 
             if (!user) {
                 res.status(404).send("User has not been found!");
+                return;
             }
 
             const passwordIsValid = bcrypt.compareSync(
@@ -103,6 +105,7 @@ export const signin = (req: any, res: any) => {
             res.status(200).send({
                 id: user._id,
                 username: user.username,
+                balance: user.balance,
                 email: user.email,
                 roles: authorities,
                 accessToken: token

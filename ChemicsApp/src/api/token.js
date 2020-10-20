@@ -18,3 +18,7 @@ export const setToken = async (token) => {
         return null;
     }
 };
+
+export const clearToken = async () => {
+    await AsyncStorage.removeItem('@auth_token');
+}
