@@ -1,5 +1,5 @@
 import API_URL from '../config/secret';
-import { getToken } from './token';
+import { getToken } from '../async_storage/token';
 
 const getHeaders = async () => {
   const token = await getToken();

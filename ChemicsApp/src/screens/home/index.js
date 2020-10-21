@@ -1,41 +1,45 @@
 import React from 'react';
-import { View, Text, SafeAreaView, Button } from 'react-native';
-import { setToken } from '../../api/token';
+import { View, Text, SafeAreaView, Button, FlatList, StyleSheet } from 'react-native';
+
 import { AuthContext } from '../../contexts/auth_context';
+import { DryContext } from '../../contexts/dry.context';
+
+import { getDries } from '../../api/dry';
+
+import DryCard from '../../components/dry.card';
 
 const HomeScreen = ({ props }) => {
 
-    const { signOut } = React.useContext(AuthContext)
-    state = { };
+    const { actions: { signOut } } = React.useContext(AuthContext)
+    const { actions, dries, setDries } = React.useContext(DryContext);
 
-    // logOut = async () => {
-    //   await setToken('')
-    //   this.props.navigation.navigate('Login');
-    // }
-
-    // const { signOut } = React.useContext(AuthContext);
-
-
-    // handleUserLoadingError = res => {
-    //   if (res.error === 401) {
-    //     this.props.navigation.navigate('Login');
-    //   } else {
-    //     this.setState({
-    //       hasLoadedUsers: false,
-    //       userLoadingErrorMessage: res.message
-    //     })
-    //   }
-    // }
-
-    // componentDidMount() {
-    // }
+    // once the component loaded
+    React.useEffect(() => {
+      async function fetchDries() {
+        setDries(await getDries());
+      }
+      fetchDries();
+    }, [])
 
     return (
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>HOME SCREEN</Text>
-          <Button title="Sign Out" onPress={() => signOut()}/>
+      <SafeAreaView contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <FlatList
+          style={styles.container}
+          keyExtractor={(item) => item._id}
+          data={dries}
+          renderItem={({item}) => <DryCard title={item.title}/>}
+        />
+        <Button title="Sign Out" onPress={() => signOut()}/>
       </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    margin: '3%',
+    marginTop: '4%',
+    width: '94%'
+  },
+});
 
 export default HomeScreen;
