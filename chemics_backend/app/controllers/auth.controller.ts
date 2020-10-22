@@ -66,7 +66,6 @@ export const signup = (req: any, res: any) => {
 };
 
 export const signin = (req: any, res: any) => {
-    console.log(req.body)
     User.findOne({
         email: req.body.email
     })

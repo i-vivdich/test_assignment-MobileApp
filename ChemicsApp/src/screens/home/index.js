@@ -9,11 +9,11 @@ import { getDries } from '../../api/dry';
 import DryCard from '../../components/dry.card';
 
 const HomeScreen = ({ props }) => {
-
+    
     const { actions: { signOut } } = React.useContext(AuthContext)
     const { actions, dries, setDries } = React.useContext(DryContext);
 
-    // once the component loaded
+    // once the component loaded - get the list of dries
     React.useEffect(() => {
       async function fetchDries() {
         setDries(await getDries());
@@ -27,7 +27,7 @@ const HomeScreen = ({ props }) => {
           style={styles.container}
           keyExtractor={(item) => item._id}
           data={dries}
-          renderItem={({item}) => <DryCard title={item.title}/>}
+          renderItem={({item}) => <DryCard title={item.title} item={item}/>}
         />
         <Button title="Sign Out" onPress={() => signOut()}/>
       </SafeAreaView>

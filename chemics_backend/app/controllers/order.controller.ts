@@ -15,8 +15,21 @@ export const createOrder = (req: any, res: any) => {
             res.status(500).send({ message: err });
             return;
         }
-
-        res.send({ message: "Order has been successfully registered!" });
+        
+        res.send({ message: "Order has been successfully registered!", newBalance: res.locals.newBalance, order: order});
     });
 
+}
+
+export const getOrders = (req: any, res: any) => {
+    Order.find({
+        user: req.params.id
+    }).exec((err: any, orders: any) => {
+        if (err) {
+            res.status(500).send({ message: err });
+            return;
+        }
+
+        res.send(orders);
+    });
 }

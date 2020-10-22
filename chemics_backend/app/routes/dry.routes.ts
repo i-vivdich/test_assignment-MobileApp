@@ -16,7 +16,7 @@ router.patch('/:id',
 )
 
 router.get('/', async (req: any, res: any) => {
-    const driesList = await Dry.find();
+    const driesList = await Dry.find().select('-__v'); // <- exclude 'version' field from document output
     if (Object.keys(driesList).length) {
         res.send(driesList);
     } else {

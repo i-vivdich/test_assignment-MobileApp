@@ -26,7 +26,9 @@ export const checkMoneyEnough = (req: any, res: any, next: any) => {
                         res.status(500).send({ message: err });
                         return;
                     }
-    
+                    
+                    res.locals.newBalance = user.balance;
+
                     next();
                 });
             }

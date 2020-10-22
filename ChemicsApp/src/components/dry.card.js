@@ -1,17 +1,24 @@
 import React from 'react';
-import { SafeAreaView, View, Text, Button, Alert, StyleSheet, Image } from 'react-native';
-import { block } from 'react-native-reanimated';
+import { SafeAreaView, View, Text, Button, Alert, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const DryCard = (props) => {
+    const navigation = useNavigation();
+
     return (
-        <View style={styles.container}>
-            <View style={styles.img_container}>
-                <Image style={styles.img} source={require('../../resources/sample.png')}/>
+        <TouchableOpacity onPress={() => {
+            navigation.navigate('MainScreen', { screen: 'DryScreen', initial: false, params: { item: props.item, title: props.title }});
+        }}>
+            <View style={styles.container}>
+                <View style={styles.img_container}>
+                    <Image style={styles.img} source={require('../../resources/sample.png')}/>
+                </View>
+                <View style={styles.title_container}>
+                    <Text style={styles.title_text}>{props.title}</Text>
+                </View>
             </View>
-            <View style={styles.title_container}>
-                <Text>{props.title}</Text>
-            </View>
-        </View>
+        </TouchableOpacity>
+        
     );
 }
 
@@ -39,6 +46,10 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         justifyContent: "center",
         alignItems: "center",
+    },
+    title_text: {
+        fontSize: 20,
+        fontWeight: "bold"
     }
 })
 

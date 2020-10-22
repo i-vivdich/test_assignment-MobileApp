@@ -7,6 +7,7 @@ import passRoute from './routes/pass.routes';
 import authRoute from './routes/auth.routes';
 import dryRoute from './routes/dry.routes';
 import orderRoute from './routes/order.routes';
+import servicesRoute from './routes/service.routes';
 
 // DB include
 import db from './models';
@@ -51,7 +52,8 @@ app.get('/', (req: any, res: any) => {
 app.use('/auth', authRoute);
 app.use('/password', passRoute);
 app.use('/api/dries', dryRoute);
-app.use('/api/orders', orderRoute)
+app.use('/api/orders', orderRoute);
+app.use('/api/services', servicesRoute);
 
 const PORT = process.env.PORT || 8090;
 app.listen(PORT, () => {
