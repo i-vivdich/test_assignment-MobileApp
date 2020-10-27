@@ -3,7 +3,7 @@ import express from 'express';
 import { verifyToken } from '../middlewares/authJwt';
 import { Dry } from '../models/dry.model';
 
-import { createDry, updateDryServices } from '../controllers/dry.controller';
+import { createDry, updateDryServices, getDryServices} from '../controllers/dry.controller';
 import { checkDryExistence } from '../middlewares/dries.checker';
 
 const router = express.Router();
@@ -29,5 +29,9 @@ router.post('/',
     [checkDryExistence],
     createDry
 );
+
+router.post('/services', 
+    getDryServices
+)
 
 export default router;

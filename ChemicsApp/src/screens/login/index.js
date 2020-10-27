@@ -11,13 +11,13 @@ const LoginScreen = ({ navigation }) => {
     const { actions: { signIn } } = React.useContext(AuthContext);
 
     return (
-       
         <ScrollView contentContainerStyle={styles.container}>
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeEmail}
                 value={email}
                 keyboardType="email-address"
+                placeholder="Email.."
             />
             <TextInput
                 style={styles.input}

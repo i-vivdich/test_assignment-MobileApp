@@ -7,6 +7,15 @@ export const Order = mongoose.model(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
+        message: {
+            type: String
+        },
+        newName: {
+            type: String,
+        },
+        newCost: {
+            type: Number
+        },
         service: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Service"

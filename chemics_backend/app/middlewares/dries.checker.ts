@@ -12,7 +12,8 @@ export const checkDryExistence = (req: any, res: any, next: any) => {
         }
 
         if (dry) {
-            res.status(400).send({ message: 'Failed! Dry is already in place.' });
+            res.statusMessage = "Failed! Dry is already in place.";
+            res.status(400).end();
             return;
         }
 

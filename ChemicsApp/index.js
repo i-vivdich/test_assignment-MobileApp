@@ -10,6 +10,7 @@ import { AuthProvider} from './src/contexts/auth_context';
 import { DryProvider } from './src/contexts/dry.context';
 import { OrderProvider } from './src/contexts/order.context'
 import { ServiceProvider } from './src/contexts/service.context';
+import { MoneyProvider } from './src/contexts/money.context';
 
 AppRegistry.registerComponent(appName, () => (
     () => (
@@ -17,7 +18,9 @@ AppRegistry.registerComponent(appName, () => (
             <DryProvider>
                 <ServiceProvider>
                     <OrderProvider>
-                        <App/>
+                        <MoneyProvider>
+                            <App/>
+                        </MoneyProvider>
                     </OrderProvider>
                 </ServiceProvider>
             </DryProvider>

@@ -4,7 +4,7 @@ import { getDries } from '../api/dry';
 
 const DryContext = React.createContext();
 
-const DryProvider = (props) => {
+const DryProvider = ({children}) => {
     const [dries, setDries] = useState([]);
     
     const actions = {
@@ -15,7 +15,7 @@ const DryProvider = (props) => {
 
     return (
         <DryContext.Provider value={{actions, dries, setDries}}>
-            { props.children }
+            {children}
         </DryContext.Provider>
     )
 }

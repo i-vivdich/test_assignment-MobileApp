@@ -6,7 +6,7 @@ import { saveUser, removeUser } from '../async_storage/user';
 
 const AuthContext = React.createContext();
 
-const AuthProvider = (props) => {
+const AuthProvider = ({ children }) => {
     const [state, dispatch] = React.useReducer(
         (prevState, action) => {
           switch (action.type) {
@@ -92,7 +92,7 @@ const AuthProvider = (props) => {
 
     return (
         <AuthContext.Provider value={{actions, state}}>
-            {props.children}
+            {children}
         </AuthContext.Provider>
     )
 }

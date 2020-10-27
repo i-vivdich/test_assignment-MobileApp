@@ -1,16 +1,29 @@
 import express from 'express';
 
 import { checkMoneyEnough } from '../middlewares/efficientMoneyChecker';
-import { verifyToken } from '../middlewares/authJwt';
-import { createOrder, getOrders } from '../controllers/order.controller';
+import { verifyToken, isAdmin } from '../middlewares/authJwt';
+import { createOrder, getOrders, getAllOrders, getOrder, updateOrder} from '../controllers/order.controller';
 
 
 const router = express.Router();
 
 router.use(verifyToken);
 
+router.post('/all',
+    // [isAdmin],
+    getAllOrders
+)
+
+router.post('/current',
+    getOrder
+)
+
 router.get('/:id',
     getOrders
+)
+
+router.patch('/:id', 
+    updateOrder
 )
 
 // :id

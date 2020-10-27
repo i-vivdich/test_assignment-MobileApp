@@ -9,7 +9,7 @@ export const createDry = (req: any, res: any) => {
         title: req.body.title,
         description: req.body.description,
         service_description: req.body.service_description,
-        imgs: [...req.body.imgs],
+        imgs: ["sample.png", "sample.png"], //[...req.body.imgs]
         owner: req.body.id
     });
 
@@ -20,7 +20,7 @@ export const createDry = (req: any, res: any) => {
             return;
         }
 
-        res.send({ message: "New Dry was registered successfully!" });
+        res.send(dry);
     });
 }
 
@@ -35,13 +35,14 @@ export const updateDryServices = (req: any, res: any) => {
         return new Service({
             _id: mongoose.Types.ObjectId(),
             name: element.name,
-            cost: element.cost
+            cost: Number(element.cost)
         })
     });
 
     try {
         Service.insertMany(servicesToAdd);
     } catch (err) {
+        
         res.status(500).send({ message: err });
     }
 
@@ -64,4 +65,15 @@ export const updateDryServices = (req: any, res: any) => {
             res.send({ message: "Services were successfully added!" });
         });
     });
+}
+
+export const getDryServices = (req: any, res: any) => {
+    Dry.find({ services : { $in : [req.body.id] }}).populate('services').select('-__v').exec((err: any, dry: any) => {
+        if (err) {
+            res.status(500).send({ message: err });
+            return;
+        }
+        
+        res.send(dry[0].services); // WARNING!
+    })
 }

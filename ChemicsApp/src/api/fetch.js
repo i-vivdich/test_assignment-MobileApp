@@ -23,12 +23,29 @@ export const post = async (destination, body) => {
     headers,
     body: JSON.stringify(body),
   });
+  
+  if (result.ok) {
+    // console.log("RESPONSE", await result.json())
+    return await result.json();
+  }
+
+  throw { error: result.status , message: result.message };
+};
+
+export const patch = async (destination, body) => {
+  const headers = await getHeaders();
+
+  const result = await fetch(`${API_URL}${destination}`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify(body),
+  });
 
   if (result.ok) {
     return await result.json();
   }
-  
-  throw { error: result.status };
+
+  throw { error: result.status , message: result.message };
 };
 
 export const get = async (destination) => {

@@ -41,7 +41,7 @@ export const isAdmin = (req: any, res: any, next: any) => {
         }
 
         for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === "admin") {
+          if (roles[i].name === "ADMIN") {
             next();
             return;
           }

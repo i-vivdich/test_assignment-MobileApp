@@ -17,11 +17,13 @@ const CreateAccountScreen = ({ navigation }) => {
                 style={styles.input}
                 onChangeText={onChangeUsername}
                 value={username}
+                placeholder="Username.."
             />
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeEmail}
                 value={email}
+                placeholder="Email"
                 keyboardType="email-address"
             />
             <TextInput
